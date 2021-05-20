@@ -1,0 +1,29 @@
+spring:
+    #配置redis的连接信息
+    redis:
+        host: 127.0.0.1
+        port: 6380
+        password: a2288311
+        #连接超时时间
+        connect-timeout: 6000ms
+        #Redis数据库索引（默认为0）
+        database: 1
+        #哨兵模式redis集群配置，就是为了通过redis找主节点，做到无感切换
+        sentinel:
+            master: redis_master
+            nodes: 127.0.0.1:26380,127.0.0.1:26381,127.0.0.1:26382,127.0.0.1:26383
+        #连接超时时间
+        timeout: 6000ms
+        ## 连接池配置，springboot2.0中直接使用jedis或者lettuce配置连接池，默认为lettuce连接池
+        jedis:
+            pool:
+                #连接池最大连接数（使用负值表示没有限制）
+                max-active: 8
+                #连接池最大阻塞等待时间（使用负值表示没有限制）
+                max-wait: -1ms
+                #连接池中的最大空闲连接
+                max-idle: 500
+                #接池中的最小空闲连接
+                min-idle: 0
+        lettuce:
+            shutdown-timeout: 0ms
